@@ -154,6 +154,7 @@ const CreatePost = () => {
             setAlert(null);
           }, 3000);
         });
+        window.location.reload();
       }
     }
   };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { HomeContainer, NewPost } from "./containers";
-import { Header, MainLoader } from "./components";
+import { HomeContainer, NewPost, SearchContainer } from "./containers";
+import { FeedDetail, Header, MainLoader } from "./components";
 import { useEffect } from "react";
 import { firebaseAuth } from "./config/firebase.config";
 import { createNewUser } from "./sanity";
@@ -24,6 +24,8 @@ const App = () => {
             setIsLoading(false);
           }, 2000);
         });
+      } else {
+        console.log("result not", result);
       }
     });
   }, []);
@@ -42,6 +44,8 @@ const App = () => {
             <Routes>
               <Route path="/*" element={<HomeContainer />} />
               <Route path="/newPost/*" element={<NewPost />} />
+              <Route path="/feed-detail/:_id" element={<FeedDetail />} />
+              <Route path="/search/:searchTerm" element={<SearchContainer />} />
             </Routes>
           </main>
         </>
